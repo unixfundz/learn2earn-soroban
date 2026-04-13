@@ -4,6 +4,9 @@
 ![Soroban CI](https://github.com/unixfundz/learn2earn-soroban/actions/workflows/soroban-ci.yml/badge.svg)
 ![Frontend CI](https://github.com/unixfundz/learn2earn-soroban/actions/workflows/frontend-ci.yml/badge.svg)
 ![Security](https://github.com/unixfundz/learn2earn-soroban/actions/workflows/security.yml/badge.svg)
+![Stars](https://img.shields.io/github/stars/unixfundz/learn2earn-soroban?style=flat-square)
+![Stellar](https://img.shields.io/badge/Stellar-Soroban-7D00FF?style=flat-square)
+![Good First Issues](https://img.shields.io/github/issues/unixfundz/learn2earn-soroban/good%20first%20issue?style=flat-square)
 ![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)
 
 Learn2Earn Soroban is an open-source, incentive-driven learning platform built on **Stellar Soroban**.
