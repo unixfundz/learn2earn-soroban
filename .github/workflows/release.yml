@@ -33,7 +33,7 @@ jobs:
         run: tar -czf learn2earn-${GITHUB_REF_NAME}.tar.gz .
 
       - name: Publish GitHub release
-        uses: softprops/action-gh-release@v2
+        uses: softprops/action-gh-release@v3
         with:
           files: |
             soroban-contracts/learn2earn_core/target/wasm32-unknown-unknown/release/learn2earn_core.wasm
