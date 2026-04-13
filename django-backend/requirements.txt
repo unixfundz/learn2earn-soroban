@@ -6,7 +6,7 @@ django-filter==24.3
 psycopg2-binary==2.9.9
 celery==5.4.0
 redis==5.2.0
-django-celery-beat==2.7.0
+django-celery-beat==2.9.0
 django-cors-headers==4.4.0
 python-dotenv==1.0.1
 stellar-sdk==12.3.0
