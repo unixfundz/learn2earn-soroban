@@ -1,9 +1,9 @@
 # Learn2Earn Soroban — Learn. Earn. On-chain.
 
-![Django CI](https://github.com/learn2earn/learn2earn/actions/workflows/django-ci.yml/badge.svg)
-![Soroban CI](https://github.com/learn2earn/learn2earn/actions/workflows/soroban-ci.yml/badge.svg)
-![Frontend CI](https://github.com/learn2earn/learn2earn/actions/workflows/frontend-ci.yml/badge.svg)
-![Security](https://github.com/learn2earn/learn2earn/actions/workflows/security.yml/badge.svg)
+![Django CI](https://github.com/unixfundz/learn2earn-soroban/actions/workflows/django-ci.yml/badge.svg)
+![Soroban CI](https://github.com/unixfundz/learn2earn-soroban/actions/workflows/soroban-ci.yml/badge.svg)
+![Frontend CI](https://github.com/unixfundz/learn2earn-soroban/actions/workflows/frontend-ci.yml/badge.svg)
+![Security](https://github.com/unixfundz/learn2earn-soroban/actions/workflows/security.yml/badge.svg)
 ![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)
 
 Learn2Earn Soroban is an open-source, incentive-driven learning platform built on **Stellar Soroban**.
