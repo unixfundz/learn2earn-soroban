@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: learn2earn-worker
+  namespace: learn2earn
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: learn2earn-worker
+  template:
+    metadata:
+      labels:
+        app: learn2earn-worker
+    spec:
+      containers:
+        - name: worker
+          image: your-registry/learn2earn-backend:v1.0.0
+          command: ["celery", "-A", "learn2earn", "worker", "-Q", "default,webhooks,backfill", "-l", "INFO"]
+          envFrom:
+            - configMapRef:
+                name: learn2earn-config
+            - secretRef:
+                name: learn2earn-secrets

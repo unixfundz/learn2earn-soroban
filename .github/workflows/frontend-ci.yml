@@ -1,0 +1,35 @@
+name: Frontend CI
+
+on:
+  push:
+    paths:
+      - "frontend/**"
+      - ".github/workflows/frontend-ci.yml"
+  pull_request:
+    paths:
+      - "frontend/**"
+
+jobs:
+  lint-and-build:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: frontend
+
+    steps:
+      - uses: actions/checkout@v4
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+      - name: Setup pnpm
+        run: |
+          corepack enable
+          corepack prepare pnpm@9.12.2 --activate
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile=false
+      - name: Lint
+        run: pnpm lint
+      - name: Build
+        run: pnpm build
+

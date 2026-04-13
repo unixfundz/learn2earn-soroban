@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: learn2earn-backend
+  namespace: learn2earn
+spec:
+  selector:
+    app: learn2earn-backend
+  ports:
+    - name: http
+      port: 80
+      targetPort: 8000

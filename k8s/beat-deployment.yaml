@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: learn2earn-beat
+  namespace: learn2earn
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: learn2earn-beat
+  template:
+    metadata:
+      labels:
+        app: learn2earn-beat
+    spec:
+      containers:
+        - name: beat
+          image: your-registry/learn2earn-backend:v1.0.0
+          command: ["celery", "-A", "learn2earn", "beat", "-l", "INFO"]
+          envFrom:
+            - configMapRef:
+                name: learn2earn-config
+            - secretRef:
+                name: learn2earn-secrets

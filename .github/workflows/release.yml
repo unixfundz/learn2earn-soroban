@@ -1,0 +1,40 @@
+name: Release
+
+on:
+  push:
+    tags:
+      - "v*.*.*"
+
+jobs:
+  build-and-release:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Build Soroban contract
+        working-directory: soroban-contracts/learn2earn_core
+        run: |
+          rustup target add wasm32-unknown-unknown
+          cargo build --target wasm32-unknown-unknown --release
+
+      - name: Build backend image
+        working-directory: django-backend
+        run: docker build -t learn2earn-backend:${GITHUB_REF_NAME} .
+
+      - name: Build frontend
+        working-directory: frontend
+        run: |
+          corepack enable
+          corepack prepare pnpm@9.12.2 --activate
+          pnpm install --frozen-lockfile=false
+          pnpm build
+
+      - name: Create source tarball
+        run: tar -czf learn2earn-${GITHUB_REF_NAME}.tar.gz .
+
+      - name: Publish GitHub release
+        uses: softprops/action-gh-release@v2
+        with:
+          files: |
+            soroban-contracts/learn2earn_core/target/wasm32-unknown-unknown/release/learn2earn_core.wasm
+            learn2earn-${{ github.ref_name }}.tar.gz

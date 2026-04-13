@@ -1,0 +1,49 @@
+name: Django CI
+
+on:
+  push:
+    paths:
+      - "django-backend/**"
+      - ".github/workflows/django-ci.yml"
+  pull_request:
+    paths:
+      - "django-backend/**"
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: django-backend
+
+    services:
+      postgres:
+        image: postgres:16
+        env:
+          POSTGRES_USER: learn2earn
+          POSTGRES_PASSWORD: learn2earn
+          POSTGRES_DB: learn2earn
+        ports:
+          - 5432:5432
+      redis:
+        image: redis:7
+        ports:
+          - 6379:6379
+
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Install dependencies
+        run: pip install -r requirements.txt dj-database-url
+      - name: Lint
+        run: ruff check .
+      - name: Test
+        env:
+          SECRET_KEY: ci
+          DEBUG: "0"
+          DATABASE_URL: postgresql://learn2earn:learn2earn@localhost:5432/learn2earn
+          CELERY_BROKER_URL: redis://localhost:6379/0
+          CELERY_RESULT_BACKEND: redis://localhost:6379/1
+        run: pytest

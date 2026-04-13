@@ -1,0 +1,26 @@
+name: Soroban CI
+
+on:
+  push:
+    paths:
+      - "soroban-contracts/**"
+      - ".github/workflows/soroban-ci.yml"
+  pull_request:
+    paths:
+      - "soroban-contracts/**"
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: soroban-contracts/learn2earn_core
+
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install Rust
+        uses: dtolnay/rust-toolchain@stable
+        with:
+          targets: wasm32-unknown-unknown
+      - name: Build contract
+        run: cargo build --target wasm32-unknown-unknown --release
