@@ -11,7 +11,7 @@ django-cors-headers==4.4.0
 python-dotenv==1.0.1
 stellar-sdk==12.3.0
 gunicorn==23.0.0
-requests==2.32.3
+requests==2.33.1
 pytest==8.3.3
 pytest-django==4.9.0
 black==24.10.0
